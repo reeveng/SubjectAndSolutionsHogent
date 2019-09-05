@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="OOPIII_MVC_Voorbeeld_filosofen_ListView_start_deel1.jnlp">
+  <information>
+    <title>OOPIII_MVC_Voorbeeld_filosofen_ListView_start_deel1</title>
+    <vendor>imf838</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="OOPIII_MVC_Voorbeeld_filosofen_ListView_start_deel1.jar" size="5578" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="OOPIII_MVC_Voorbeeld_filosofen_ListView_start_deel1" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="StartUp"  name="OOPIII_MVC_Voorbeeld_filosofen_ListView_start_deel1" />
+  <update check="always"/>
+</jnlp>

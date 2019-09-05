@@ -1,0 +1,63 @@
+---
+title: "Grafen in R"
+author: "Jens Buysse"
+date: "2/4/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Grafen in R
+
+Je kan grafen maken in R door de library igraph te installeren. Voor alle info zie: http://kateto.net/networks-r-igraph
+
+```{r }
+library(igraph) # Load the igraph package
+```
+
+Een graaf defini??ren is dan eenvoudig: (bv. de graaf zoals gedefinieerd in de cursus)
+
+``` {r }
+g2 <- graph(edges = c("a","b", "a","c", "b","d", "c","d", "c","e", "e","d", "e","f", "d","f"))
+plot (g2)
+E(g2)
+V(g2)
+#Adjacentiematrix opstellen
+g2[]
+#Graad bepalen
+deg <- degree(g2, mode="all")
+plot(g2, vertex.size=deg*3)
+```
+
+Oplossing oefeningen
+``` {r }
+#u <- undirected
+ug <- graph(edges = c("a","f","a","e","a","b","a","c","b","e", "c","d","c","e","d","g", "e","g","f","g"), directed= F)
+plot(ug)
+#d <- directed
+dg <- graph(edges = c("a","e","b","a","c","d","c","a","d","c","e","c","e","b","f","a","g","e","g","f","d","g"), directed= T)
+plot(dg)
+E(ug)
+E(dg)
+# Buren bepalen van e, graad bepalen van e
+uNeighbors <- neighbors(ug, "e")
+uNeighbors
+uGraadE <- length(uNeighbors)
+uGraadE
+dNeighbors <- neighbors(dg,"e")
+dGraadE <- length(dNeighbors)
+dNeighbors
+dGraadE
+ug[]
+dg[]
+```
+Topologisch sorteren van softwaremodules
+
+``` {r }
+modules <- graph(edges = c(1,2,1,3, 2,4,2,10,3,5,4,6,4,8,5,8,6,3,7,5,7,9,9,4,9,10), directed= T)
+plot(modules)
+topo_sort(modules)
+
+```

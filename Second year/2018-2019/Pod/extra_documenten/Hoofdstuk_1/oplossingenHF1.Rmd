@@ -1,0 +1,134 @@
+---
+title: "Oplossingen Kansrekeningen POD2 - week 1"
+author: "Jens Buysse"
+date: "13/2/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Oplossingen van geselecteerde oefeningen hoofstuk 1 met R
+Men gooit eenmaal met een eerlijke dobbelsteen.
+Wat is de kans op een even getal? (opsomming)
+``` {r 1.1}
+kans <- length(c(2,4,6))/length(c(1:6))  
+kans
+```
+
+Wat is de kans op een oneven getal? (opsomming)
+``` {r 1.2}
+kans <- length(c(1,3,5))/length(c(1:6))  
+kans
+```
+
+Wat is de kans op een priemgetal? (opsomming)
+``` {r 1.3}
+kans <- length(c(2,3,5))/length(c(1:6))  
+kans
+```
+
+Wat is de kans om met twee dobbelstenen meer dan acht te gooien?
+``` {r 1.4}
+totaalAantalMogelijkheden <- length(c(1:6))*length(c(1:6))
+aantalGroterDan8 <- length(c(c(3,6),c(4,6), c(5,6),c(6,6),c(5,4),c(5,5))) -2
+kans <- aantalGroterDan8 / totaalAantalMogelijkheden
+kans
+5/18
+```
+
+Een duistere urne bevat 6 blauwe en 4 rode bollen die verder
+identiek zijn. Men trekt een na een, twee bollen uit de urne
+met teruglegging van de getrokken bol. Wat is de kans dat
+men twee blauwe bollen heeft getrokken?
+``` {r 1.5 }
+kans1steblauw <- 6 /10
+kans2eblauw <- 6 /10
+kansBeideBlauw <- kans1steblauw * kans2eblauw
+kansBeideBlauw
+```
+
+Je kan dit ook oplossen met R indien het aantal elementen "klein" genoeg is. We raden dit niet aan te doen op het examen, maar dit is louter ter illustratie.
+``` {r 1.5.2 }
+library(gtools)
+x <- c('blauw1','blauw2','blauw3','blauw4','blauw5','blauw6', 'rood1','rood2','rood3','rood4')
+permutations(n=10,r=2,v=x,repeats.allowed=T)
+aantal <- nrow(permutations(n=10,r=2,v=x,repeats.allowed=T))
+blauwVector <- c('blauw1','blauw2','blauw3','blauw4','blauw5','blauw6')
+blauwPermutaties <- permutations(n=6,r=2,v=blauwVector,repeats.allowed=T)
+aantalBlauw <- nrow(permutations(n=6,r=2,v=blauwVector,repeats.allowed=T))
+kans <- aantalBlauw/aantal
+kans
+```
+
+
+Wat is de kans om bij de Belgische lotto zes juiste cijfers te
+hebben? Er zitten 45 ballen in de trommel en er worden er zes
+getrokken zonder teruglegging. De volgorde bij de lotte in Belgi?? doet er niet toe.
+```{r 1.6}
+totaalAantalCombinaties <- choose(n=45,k=6)
+gekozenGetalal <- 1
+kans <- 1 / totaalAantalCombinaties
+kans
+```
+
+Een toegangscode tot een (amateurs) computersysteem
+bestaat uit drie letters die door een randomgenerator worden
+toegewezen.
+
+- Wat is de kans dat een code wordt toegewezen zonder de
+letter x?
+``` {r 1.7}
+totaal <- 26^3
+aantalComb <- 25^3
+kans <- aantalComb/totaal
+kans
+```
+
+- Wat is de kans dat een code wordt toegewezen waarvan alle
+letters verschillend zijn?
+```{r 1.8}
+aantalComb <- 26 * 25 * 24
+kans <- aantalComb/totaal
+kans
+```
+
+Een doos bevat 10 lampen. Bij vergissing worden 4
+afgekeurde lampen mee verpakt. Men neemt lukraak drie
+lampen uit de doos. Wat is de kans  dat exact $i (0 \leq i \leq 3)$ van de drie
+gekozen lampen defect zijn?
+
+- Voor $i = 0$
+```{r }
+totaalCombinaties <- choose(10,3)
+nietDefecte <- choose(6,3)
+kans <- nietDefecte/totaalCombinaties
+kans
+```
+
+- Voor $i =1$
+```{r }
+eenDefect <- choose(4,1) * choose(6,2)
+kans <- eenDefect/totaalCombinaties
+kans
+```
+
+- Voor $i = 2$ 
+```{r }
+tweeDefect <- choose(4,2) * choose(6,1)
+kans <- tweeDefect/totaalAantalCombinaties
+kans
+```
+
+Wat is de kans dat er minstens 2 studenten van de $k$ jarig zijn op dezelfde dag in een bepaalde klas?
+``` {r}
+#Oplossing van het probleem dat de kans berekent dat er minstens twee studenten in een klas van k studenten een zelfde verjaardagsdatum hebben (behale jaar). Oplossing thanks to https://rpubs.com/StatGirl302/TheBirthdayProblem
+k = 100  #aantal mensen in de klas
+p <- numeric(k)  # maak een vector aan van k elementen lang
+for (i in 1:k)      {
+            q <- 1 - (0:(i - 1))/365  # 1 - prob(niemand jarig op dezelf dag)
+            p[i] <- 1 - prod(q)  }
+plot(p, main="Kans minstens twee studenten jarig op dezelfde dag", xlab ="Aantal studenten", ylab = "kans", col="blue") 
+grid()
+```

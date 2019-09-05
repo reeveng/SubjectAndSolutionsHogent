@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="OOPIII_NET_TCP_FX_server.jnlp">
+  <information>
+    <title>OOPIII_NET_TCP_FX_server</title>
+    <vendor>jvs361</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="OOPIII_NET_TCP_FX_server.jar" size="3212" download="eager" />
+    <jar href="lib\OOPIII_NET_TCP_FX_common.jar" size="6220" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="OOPIII_NET_TCP_FX_server" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="main.StartUpServer"  name="OOPIII_NET_TCP_FX_server" />
+  <update check="always"/>
+</jnlp>

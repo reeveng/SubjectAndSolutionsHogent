@@ -1,0 +1,3 @@
+proxy: dubbelganger, kent altijd het echte object
+virtuele proxy:
+remote proxy: starten met interface, dubbelganger aanmaken, poorten aanmaken voor server enzo

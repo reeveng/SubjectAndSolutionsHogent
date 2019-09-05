@@ -1,0 +1,82 @@
+---
+title: "Oplossingen oefeningen kansveranderlijke"
+author: "Jens Buysse"
+date: "1/3/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Oplossingen oefeningen kansveranderlijke
+
+Bij een dobbelspel met eenn dobbelsteen krijgt men het drievoud uitbetaald van het aantal ogen.  Dit geeft aanleiding tot een kansvariabele $X$.  Geef de uitkomstenverzameling $\omega$ , $f_X$ en $F_X$.  Geef de grafiek van zowel $f_X$ als $F_X$. Men spreekt van de DISCRETE  UNIFORME  VERDELING.
+
+``` {r }
+omega <- c(1:6)
+uitkomsten <- 3*omega
+
+omega
+uitkomsten
+
+```
+
+De functie wordt: $f_x : \omega \rightarrow R: w_i \rightarrow 3* i$ 
+
+``` {r }
+functie <-  function(w){
+  return(3*w)
+}
+y = lapply(omega,functie)
+
+plot(functie(omega),type='p' )
+
+
+plot(x = 1:6,ylab= "kans", type ='h', col="red", lwd=10)
+```
+
+We tekenen ook de cummulatieve functie:
+
+``` {r }
+cumFunc <- function(w){
+  if(w < 3){
+    return(0)
+  }
+  if(w %in% seq(3,5)){
+    return(1/6)
+  }
+  if(w %in% seq(6,8)){
+    return(2/6)
+    }
+  if(w %in% seq(9,11)){
+    return(3/6)
+  }
+  if(w %in% seq(12,14)){
+    return(4/6)
+  }
+  if(w %in% seq(15,17)){
+    return(5/6)
+  }
+  return(1)
+}
+
+y = lapply(1:18, cumFunc)
+
+plot(x = 1:18,y, ylab= "cummulatieve kans", type ='h', col="red", lwd=10)
+```
+
+Men gooit een evenwichtig muntstuk op tot voor de eerste keer ???munt??? verschijnt. We noemen $X$ het daartoe benodigde aantal worpen. Wat is het beeld van $X$? Geef $f_X(x)$ en $F_X(x)$. Schets hun grafiek. Hoe groot is de kans dat het aantal worpen minstens 3 en ten hoogste 6 bedraagt?
+
+- Het beeld van $X = {1 , 2, .... }$
+- $f_x = \frac{1}{2} ^x$
+
+``` {r }
+v = 1:10
+k = round((1/2)^v,2)
+v
+k
+plot(v,k,type="h", col="blue", lwd=10)
+
+```
+
